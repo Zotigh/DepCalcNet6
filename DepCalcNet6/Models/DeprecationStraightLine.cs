@@ -40,7 +40,7 @@ namespace DepCalcNet6.Models
             set { endValue = value; }
         }
         [Required]
-        [Range(1, 3, ErrorMessage = "Positive Numbers Only!")]
+        [Range(1, double.MaxValue - 1, ErrorMessage = "Positive Numbers Only!")]
         public double LifeTime
         {
             get { return lifeTime; }
