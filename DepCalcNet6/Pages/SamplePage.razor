@@ -2,7 +2,7 @@
 
 @inject SuccessfullyCalculatedResults CalculatedService
 
-<h3>SamplePage</h3>
+<!--<h3>SamplePage</h3>
 
 <ul>
     <li>Pop</li>
@@ -12,8 +12,72 @@
 
 <div>
     @UIMessage
+</div>-->
+<div style="background-color:darkslateblue">
+    <div style="padding:1vw;">
+        <form action="~/index.html" method="get" style="color:white">
+            <EditForm Model="@DepSL" OnValidSubmit="@SubmitButtonPressed">
+                <DataAnnotationsValidator />
+
+                Lifetime (In Years):
+                <InputNumber id="DepricationStraightLine." @bind-Value="@DepSL.LifeTime"
+                             name="principle" type="text" style="width:100%;" />
+                <ValidationMessage For="@(() => DepSL.LifeTime)" />
+                <br /><br />
+                <!--
+                Salvage Value ($):
+                <InputNumber id="DepricationStraightLine." @bind-Value="@DepSL.SalvageValue"
+                             type="text" style="width:100%;" />
+                <ValidationMessage For="@(() => DepSL.SalvageValue)" />
+                <br /><br />
+
+                Start Value ($):
+                <InputNumber id="DepricationStraightLine." @bind-Value="@DepSL.StartValue"
+                             type="text" style="width:100%;" />
+                <ValidationMessage For="@(() => DepSL.StartValue)" />
+                <br /><br />
+
+                Title:
+                <InputText id="DepricationStraightLine." @bind-Value="@DepSL.Title"
+                           type="text" style="width:100%;" />
+                <ValidationMessage For="@(() => DepSL.Title)" />
+                <br /><br />
+
+                Date Entered in Inventory:
+                <InputDate id="DepricationStraightLine." @bind-Value="@DepSL.DateAddedToInventory"
+                           type="date" style="width:100%;" />
+                <ValidationMessage For="@(() => DepSL.DateAddedToInventory)" />
+                <br /><br />
+
+                Date Removed From Inventory:
+                <InputDate id="DepricationStraightLine." @bind-Value="@DepSL.DateRemovedFromInventory"
+                           type="date" style="width:100%;" />
+                <ValidationMessage For="@(() => DepSL.DateRemovedFromInventory)" />
+                <br /><br /> -->
+
+                <button type="button" @onclick="SubmitButtonPressed">Submit</button>
+                <button type="button" @onclick="ClearButtonPressed">Clear</button>
+            </EditForm>
+        </form>
+    </div>
+   <!-- <div style="color:white">
+        <p style="font-weight:bold">  End Value: $@Final.EndValue</p>
+    </div>-->
+</div>
+<div>
+    @UIMessage
 </div>
 
 @code {
-    string UIMessage = "UI Test Message";
+    string UIMessage = "";
+
+    void SubmitButtonPressed()
+    {
+        UIMessage = "Submit Button Pressed";
+    }
+
+    void ClearButtonPressed()
+    {
+        UIMessage = "Clear Button Pressed";
+    }
 }
