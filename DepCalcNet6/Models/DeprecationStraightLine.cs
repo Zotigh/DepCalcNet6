@@ -2,7 +2,6 @@
 * Programmer: Lance Zotigh (lzotigh1@cnm.edu)
 * Purpose: A simple program that calculates what the future depreciable value of an asset will be.
 *******************************************************/
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace DepCalcNet6.Models
@@ -20,7 +19,7 @@ namespace DepCalcNet6.Models
         private int position = -1;
 
         //Properties (Getters and Setters).
-        [Required (ErrorMessage="Please be sure to include a Date Added!")]
+        [Required(ErrorMessage = "Please be sure to include a Date Added!")]
         public DateTime DateAddedToInventory
         {
             get { return dateAddedToInventory; }
@@ -60,11 +59,11 @@ namespace DepCalcNet6.Models
             get { return Math.Round(startValue, 2); }
             set { startValue = value; Calc(); }
         }
-        [Required(ErrorMessage="Please be sure to include a title!")]
-        public string Title 
-        { 
-            get {return title;} 
-            set{title = value;} 
+        [Required(ErrorMessage = "Please be sure to include a title!")]
+        public string Title
+        {
+            get { return title; }
+            set { title = value; }
         }
         [Required]
         [Range(1, int.MaxValue - 1, ErrorMessage = "Positive Numbers Only!")]
@@ -76,14 +75,14 @@ namespace DepCalcNet6.Models
 
         // Base/Overloaded class constructor.
         public DeprecationStraightLine() { }
-        public DeprecationStraightLine(double lifetime, double salvageValue, double startValue, string title)//, DateTime dateAddedToInventory, DateTime dateRemovedFromInventory)
+        public DeprecationStraightLine(double lifetime, double salvageValue, double startValue, string title, DateTime dateAddedToInventory, DateTime dateRemovedFromInventory)
         {
             LifeTime = lifetime;
             SalvageValue = salvageValue;
             StartValue = startValue;
             Title = title;
-           // DateAddedToInventory = dateAddedToInventory;
-           // DateRemovedFromInventory = dateRemovedFromInventory;
+            DateAddedToInventory = dateAddedToInventory;
+            DateRemovedFromInventory = dateRemovedFromInventory;
         }
         /// <summary>
         /// Calculates the Straight Line Deprecation value and returns the calculated value.

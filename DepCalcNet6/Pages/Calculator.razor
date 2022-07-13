@@ -77,7 +77,7 @@
     void SubmitButtonPressed()
     {
         if (DepSL.LifeTime > 0 && DepSL.SalvageValue > 0 && DepSL.StartValue > 0 &&  DepSL.Title != "" && DepSL.DateAddedToInventory != DateTime.MinValue && DepSL.DateRemovedFromInventory != DateTime.MinValue && DepSL.DateAddedToInventory != DepSL.DateRemovedFromInventory) {
-            Final = new DeprecationStraightLine(DepSL.LifeTime, DepSL.SalvageValue, DepSL.StartValue, DepSL.Title), DepSL.DateAddedToInventory, DepSL.DateRemovedFromInventory);
+            Final = new DeprecationStraightLine(DepSL.LifeTime, DepSL.SalvageValue, DepSL.StartValue, DepSL.Title, DepSL.DateAddedToInventory, DepSL.DateRemovedFromInventory);
             CalculatedService.CalculatedResults.Add(Final);
             UIMessage = "Calculation Successfully Received!";
         }
