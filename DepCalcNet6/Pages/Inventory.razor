@@ -1,0 +1,65 @@
+﻿<!-----------------------------------------------------
+* Programmer: Lance Zotigh (lzotigh1@cnm.edu)
+* Purpose: A simple program that calculates what the future depreciable value of an asset will be.
+------------------------------------------------------->
+
+@page "/inventory"
+@inject SuccessfullyCalculatedResults CalculatedService
+@inject NavigationManager NavigationManager
+
+    <!--Main Part of page-->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title:</th>
+                <th>startValue:</th>
+                <th>Salvage Value:</th>
+                <th>LifeTime:</th>
+                <th>Date Added:</th>
+                <th>Date Removed:</th>
+                <th>End Value:</th>
+                <th>Edit:</th>
+                <th>Remove:</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var CalculatedResult in CalculatedService.CalculatedResults)
+            {
+                <tr>
+                    <td>@CalculatedResult.Title</td>
+                    <td>$@CalculatedResult.StartValue</td>
+                    <td>$@CalculatedResult.SalvageValue</td>
+                    <td>@CalculatedResult.LifeTime</td>
+                    <td>@CalculatedResult.DateAddedToInventory.ToShortDateString()</td>
+                    <td>@CalculatedResult.DateRemovedFromInventory.ToShortDateString()</td>
+                    <td>@CalculatedResult.EndValue</td>
+                    <td><button type="button" @onclick="e => EditItem(CalculatedResult)">Edit</button></td>
+                    <td><button type="button" @onclick="e => RemoveItem(CalculatedResult)">Remove</button></td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+    <!--End of Main Part of page-->
+
+    @code {
+        /// <summary>
+        /// Handles the Edit Item button event. It saves the position of the currrent value of the list and navigated to the EditPage.
+        /// </summary>
+        /// <param name="CalculatedResult"></param>
+        void EditItem(DeprecationStraightLine CalculatedResult)
+        {
+            CalculatedResult.Position = CalculatedService.CalculatedResults.IndexOf(CalculatedResult);
+            NavigationManager.NavigateTo("EditPage");
+        }
+
+        /// <summary>
+        /// Handles the remove Item button event. finds the position of the desired element to remove and removes it from the list.
+        /// </summary>
+        /// <param name="CalculatedResult"></param>
+        void RemoveItem(DeprecationStraightLine CalculatedResult)
+        {
+            int i = CalculatedService.CalculatedResults.IndexOf(CalculatedResult);
+            CalculatedService.CalculatedResults.RemoveAt(i);
+        }
+    }
