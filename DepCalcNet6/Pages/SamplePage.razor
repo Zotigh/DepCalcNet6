@@ -24,7 +24,7 @@
                              name="principle" type="text" style="width:100%;" />
                 <ValidationMessage For="@(() => DepSL.LifeTime)" />
                 <br /><br />
-                <!--
+                
                 Salvage Value ($):
                 <InputNumber id="DepricationStraightLine." @bind-Value="@DepSL.SalvageValue"
                              type="text" style="width:100%;" />
@@ -53,7 +53,7 @@
                 <InputDate id="DepricationStraightLine." @bind-Value="@DepSL.DateRemovedFromInventory"
                            type="date" style="width:100%;" />
                 <ValidationMessage For="@(() => DepSL.DateRemovedFromInventory)" />
-                <br /><br /> -->
+                <br /><br /> 
 
                 <button type="button" @onclick="SubmitButtonPressed">Submit</button>
                 <button type="button" @onclick="ClearButtonPressed">Clear</button>
@@ -69,6 +69,8 @@
 </div>
 
 @code {
+    DeprecationStraightLine DepSL = new DeprecationStraightLine();
+
     string UIMessage = "";
 
     void SubmitButtonPressed()

@@ -38,7 +38,8 @@
                 <ValidationMessage For="@(() => DepSL.Title)" />
                 <br /><br />
 
-                Date Entered in Inventory:
+               <!-- 
+               Date Entered in Inventory:
                 <InputDate id="DepricationStraightLine." @bind-Value="@DepSL.DateAddedToInventory"
                            type="date" style="width:100%;" />
                 <ValidationMessage For="@(() => DepSL.DateAddedToInventory)" />
@@ -49,7 +50,7 @@
                            type="date" style="width:100%;" />
                 <ValidationMessage For="@(() => DepSL.DateRemovedFromInventory)" />
                 <br /><br />
-
+                -->
                 <button type="button" @onclick="SubmitButtonPressed">Submit</button>
                 <button type="button" @onclick="ClearButtonPressed">Clear</button>
             </EditForm>
@@ -75,8 +76,9 @@
     /// </summary>
     void SubmitButtonPressed()
     {
-        if (DepSL.LifeTime > 0 && DepSL.SalvageValue > 0 && DepSL.StartValue > 0 &&  DepSL.Title != "" && DepSL.DateAddedToInventory != DateTime.MinValue && DepSL.DateRemovedFromInventory != DateTime.MinValue && DepSL.DateAddedToInventory != DepSL.DateRemovedFromInventory) {
-            Final = new DeprecationStraightLine(DepSL.LifeTime, DepSL.SalvageValue, DepSL.StartValue, DepSL.Title, DepSL.DateAddedToInventory, DepSL.DateRemovedFromInventory);
+        if (DepSL.LifeTime > 0 && DepSL.SalvageValue > 0 && DepSL.StartValue > 0 &&  DepSL.Title != "" )
+        {//&& DepSL.DateAddedToInventory != DateTime.MinValue && DepSL.DateRemovedFromInventory != DateTime.MinValue && DepSL.DateAddedToInventory != DepSL.DateRemovedFromInventory) {
+            Final = new DeprecationStraightLine(DepSL.LifeTime, DepSL.SalvageValue, DepSL.StartValue, DepSL.Title);//, DepSL.DateAddedToInventory, DepSL.DateRemovedFromInventory);
             CalculatedService.CalculatedResults.Add(Final);
             UIMessage = "Calculation Successfully Received!";
         }
@@ -93,8 +95,8 @@
         DepSL.StartValue = 0;
         DepSL.Title = "";
         DepSL.EndValue = 0;
-        DepSL.DateAddedToInventory = default;
-        DepSL.DateRemovedFromInventory = default;
+      // DepSL.DateAddedToInventory = default;
+       // DepSL.DateRemovedFromInventory = default;
 
 
         Final.LifeTime = 0;
@@ -102,8 +104,8 @@
         Final.StartValue = 0;
         Final.Title = "";
         Final.EndValue = 0;
-        Final.DateAddedToInventory = default;
-        Final.DateRemovedFromInventory = default;
+      ///  Final.DateAddedToInventory = default;
+       /// Final.DateRemovedFromInventory = default;
 
         UIMessage = "";
     }

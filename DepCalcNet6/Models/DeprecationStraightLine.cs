@@ -76,14 +76,14 @@ namespace DepCalcNet6.Models
 
         // Base/Overloaded class constructor.
         public DeprecationStraightLine() { }
-        public DeprecationStraightLine(double lifetime, double salvageValue, double startValue, string title, DateTime dateAddedToInventory, DateTime dateRemovedFromInventory)
+        public DeprecationStraightLine(double lifetime, double salvageValue, double startValue, string title)//, DateTime dateAddedToInventory, DateTime dateRemovedFromInventory)
         {
             LifeTime = lifetime;
             SalvageValue = salvageValue;
             StartValue = startValue;
             Title = title;
-            DateAddedToInventory = dateAddedToInventory;
-            DateRemovedFromInventory = dateRemovedFromInventory;
+           // DateAddedToInventory = dateAddedToInventory;
+           // DateRemovedFromInventory = dateRemovedFromInventory;
         }
         /// <summary>
         /// Calculates the Straight Line Deprecation value and returns the calculated value.
