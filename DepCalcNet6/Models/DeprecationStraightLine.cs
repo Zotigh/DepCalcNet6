@@ -24,7 +24,7 @@ namespace DepCalcNet6.Models
         public DateTime DateAddedToInventory
         {
             get { return dateAddedToInventory; }
-            set { dateAddedToInventory = value; Calc(); }
+            set { dateAddedToInventory = value; }//Calc(); }
         }
         [Required(ErrorMessage = "Please be sure to include a Date Removed!")]
         public DateTime DateRemovedFromInventory
