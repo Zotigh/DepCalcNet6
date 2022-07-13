@@ -3,9 +3,10 @@
 * Purpose: A simple program that calculates what the future depreciable value of an asset will be.
 ------------------------------------------------------->
 
-@page "/calculator"
+@page "/EditPage"
 
 @inject SuccessfullyCalculatedResults CalculatedService
+@inject NavigationManager NavigationManager
 
 <!--Main Part of page-->
 <div style="background-color:darkslateblue">
@@ -15,7 +16,7 @@
                 <DataAnnotationsValidator />
 
                 Lifetime (In Years):
-                <InputNumber id="DepricationStraightLine." @bind-Value="@DepSL.LifeTime"
+                <InputNumber id="DepricationStraightLine." @bind-Value="DepSL.LifeTime"
                              name="principle" type="text" style="width:100%;" />
                 <ValidationMessage For="@(() => DepSL.LifeTime)" />
                 <br /><br />
@@ -38,18 +39,18 @@
                 <ValidationMessage For="@(() => DepSL.Title)" />
                 <br /><br />
 
-               Date Entered in Inventory:
+                Date Entered in Inventory:
                 <InputDate id="DepricationStraightLine." @bind-Value="@DepSL.DateAddedToInventory"
                            style="width:100%;" />
                 <ValidationMessage For="@(() => DepSL.DateAddedToInventory)" />
                 <br /><br />
-                
+
                 Date Removed From Inventory:
                 <InputDate id="DepricationStraightLine." @bind-Value="@DepSL.DateRemovedFromInventory"
                            style="width:100%;" />
                 <ValidationMessage For="@(() => DepSL.DateRemovedFromInventory)" />
                 <br /><br />
-               
+
                 <button type="button" @onclick="SubmitButtonPressed">Submit</button>
                 <button type="button" @onclick="ClearButtonPressed">Clear</button>
             </EditForm>
@@ -65,24 +66,52 @@
 <!--End of Main Part of page-->
 
 @code {
-    //initilizers
+    //Initilizers
     DeprecationStraightLine DepSL = new DeprecationStraightLine();
     DeprecationStraightLine Final = new DeprecationStraightLine();
     string UIMessage = "";
+    int i;
 
     /// <summary>
-    /// Handles the submit button event and adds a new object to the list.
+    /// Method that is ran at initiliation that will populate the form.
+    /// </summary>
+    void initalize()
+    {
+        foreach (var CalculatedResult in CalculatedService.CalculatedResults)
+        {
+            if (CalculatedResult.Position >= 0)
+            {
+                DepSL = CalculatedResult;
+            }
+        }
+    }
+
+    /// <summary>
+    /// initilizer that populates the form via a initilize method.
+    /// </summary>
+    /// <returns>Completed Task</returns>
+    protected override async Task OnInitializedAsync()
+    {
+        initalize();
+    }
+
+    /// <summary>
+    /// Handles the Button submit event and edits the desired/selected object with the new values.
     /// </summary>
     void SubmitButtonPressed()
     {
-        if (DepSL.LifeTime > 0 && DepSL.SalvageValue > 0 && DepSL.StartValue > 0 &&  DepSL.Title != "" && DepSL.DateAddedToInventory != DateTime.MinValue && DepSL.DateRemovedFromInventory != DateTime.MinValue && DepSL.DateAddedToInventory != DepSL.DateRemovedFromInventory) {
-            Final = new DeprecationStraightLine(DepSL.LifeTime, DepSL.SalvageValue, DepSL.StartValue, DepSL.Title, DepSL.DateAddedToInventory, DepSL.DateRemovedFromInventory);
-            CalculatedService.CalculatedResults.Add(Final);
+        if (DepSL.LifeTime > 0 && DepSL.SalvageValue > 0 && DepSL.StartValue > 0 && DepSL.Title != "" && DepSL.DateAddedToInventory != DateTime.MinValue && DepSL.DateRemovedFromInventory != DateTime.MinValue && DepSL.DateAddedToInventory != DepSL.DateRemovedFromInventory)
+        {
+            i = DepSL.Position;
+            CalculatedService.CalculatedResults.RemoveAt(DepSL.Position);
+            DepSL.Position = -1;
+            CalculatedService.CalculatedResults.Insert(i, DepSL);
             UIMessage = "Calculation Successfully Received!";
+            NavigationManager.NavigateTo("Inventory");
         }
         else { UIMessage = "Calculation not accepted please ensure that all fields are correct and filled."; }
     }
-    
+
     /// <summary>
     /// Handles the Remove button event clearing the values.
     /// </summary>
