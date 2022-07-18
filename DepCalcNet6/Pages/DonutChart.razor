@@ -3,10 +3,83 @@
 * Purpose: A simple program that calculates what the future depreciable value of an asset will be.
 ------------------------------------------------------->
 
-@page "/donutchart"
+@using IgniteUI.Blazor.Controls
 
-<h3>DonutChart</h3>
+@inject IIgniteUIBlazor IgniteUIBlazor
+
+<div class="container vertical">
+
+	    <div class="legend-title">
+        Global Electricity Demand by Energy Use
+    </div>
+
+	     <div class="legend">
+        <IgbItemLegend
+        Orientation="LegendOrientation.Horizontal"
+        Name="Legend"
+        @ref="legend">
+        </IgbItemLegend>
+    </div>
+
+    <div class="container vertical fill">
+        <IgbDoughnutChart
+        AllowSliceExplosion="true"
+        Name="chart"
+        @ref="chart">
+            <IgbRingSeries
+            DataSource="EnergyGlobalDemand"
+            ValueMemberPath="Value"
+            LabelMemberPath="Summary"
+            LegendLabelMemberPath="Category"
+            LabelsPosition="LabelsPosition.OutsideEnd"
+            LabelExtent="30"
+            StartAngle="30"
+            Outlines="white"
+            RadiusFactor="0.6"
+            Name="series"
+            @ref="series">
+            </IgbRingSeries>
+        </IgbDoughnutChart>
+    </div>
+</div>
 
 @code {
+    protected override void OnInitialized()
+    {
+        IgbItemLegendModule.Register(IgniteUIBlazor);
+        IgbDoughnutChartModule.Register(IgniteUIBlazor);
+
+    }
+
+	private Action BindElements { get; set; }
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		var legend = this.legend;
+		var chart = this.chart;
+		var series = this.series;
+
+        this.BindElements = () => {
+            series.Legend = this.legend;
+        };
+        this.BindElements();
+	}
+
+	private IgbItemLegend legend;
+	private IgbDoughnutChart chart;
+	private IgbRingSeries series;
+
+    private EnergyGlobalDemand _energyGlobalDemand = null;
+    public EnergyGlobalDemand EnergyGlobalDemand
+    {
+        get
+        {
+            if (_energyGlobalDemand == null)
+            {
+                _energyGlobalDemand = new EnergyGlobalDemand();
+            }
+            return _energyGlobalDemand;
+        }
+    }
 
 }
