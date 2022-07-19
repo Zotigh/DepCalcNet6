@@ -77,11 +77,11 @@
     {
         get
         {
-            if (_energyGlobalDemand == null)
+            if (_successfullyCalculatedResults == null)
             {
-                _energyGlobalDemand = new EnergyGlobalDemand();
+                _successfullyCalculatedResults = new SuccessfullyCalculatedResults();
             }
-            return _energyGlobalDemand;
+            return _successfullyCalculatedResults;
         }
     }
     /*
