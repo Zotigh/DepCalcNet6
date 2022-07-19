@@ -30,9 +30,9 @@
         Name="chart"
         @ref="chart">
             <IgbRingSeries
-            DataSource="EnergyGlobalDemand"
-            ValueMemberPath="Value"
-            LabelMemberPath="Summary"
+            DataSource="CalculatedResults"
+            ValueMemberPath="EndValue"
+            <!--LabelMemberPath="Summary"-->
             LegendLabelMemberPath="Category"
             LabelsPosition="LabelsPosition.OutsideEnd"
             LabelExtent="30"
@@ -71,7 +71,7 @@
 	private IgbItemLegend legend;
 	private IgbDoughnutChart chart;
 	private IgbRingSeries series;
-
+    /*
     private EnergyGlobalDemand _energyGlobalDemand = null;
     public EnergyGlobalDemand EnergyGlobalDemand
     {
@@ -84,5 +84,5 @@
             return _energyGlobalDemand;
         }
     }
-
+    */
 }
