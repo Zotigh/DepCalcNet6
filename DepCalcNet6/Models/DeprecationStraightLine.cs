@@ -89,6 +89,8 @@ namespace DepCalcNet6.Models
         /// </summary>
         private void Calc()
         {
+
+            //This is for a straight line deprication
             endValue = (startValue -
                 salvageValue) * (1 / lifeTime);
         }
