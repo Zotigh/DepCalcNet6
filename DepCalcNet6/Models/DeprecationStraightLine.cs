@@ -95,6 +95,7 @@ namespace DepCalcNet6.Models
                 salvageValue) * (1 / lifeTime);
 
             //TODO add a double line deprication calculation method
+            //Periodic Deprication Expense = Beginning book value * rate of deprication Might have to divide by 1 same as above so I can get a correct answer.
         }
     }
 }
