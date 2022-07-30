@@ -93,6 +93,8 @@ namespace DepCalcNet6.Models
             //This is for a straight line deprication
             endValue = (startValue -
                 salvageValue) * (1 / lifeTime);
+
+            //TODO add a double line deprication calculation method
         }
     }
 }
