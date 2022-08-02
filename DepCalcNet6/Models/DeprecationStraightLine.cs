@@ -11,7 +11,7 @@ namespace DepCalcNet6.Models
         //Fields.
         private DateTime dateAddedToInventory;
         private DateTime dateRemovedFromInventory;
-        private double endValue = 0;
+        private double straightEndValue = 0;
         private double lifeTime = 0;
         private double startValue = 0;
         private double salvageValue = 0;
@@ -35,8 +35,8 @@ namespace DepCalcNet6.Models
         [Range(1, double.MaxValue - 1, ErrorMessage = "Positive Numbers Only!")]
         public double StraightEndValue
         {
-            get { return Math.Round(endValue); }
-            set { endValue = value; }
+            get { return Math.Round(straightEndValue); }
+            set { straightEndValue = value; }
         }
         [Required]
         [Range(1, double.MaxValue - 1, ErrorMessage = "Positive Numbers Only!")]
