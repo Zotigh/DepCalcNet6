@@ -43,8 +43,8 @@ namespace DepCalcNet6.Models
         [Range(1, double.MaxValue - 1, ErrorMessage = "Positive Numbers Only!")]
         public double DoubleEndValue
         {
-            get { return Math.Round(endValue); }
-            set { endValue = value; }
+            get { return Math.Round(doubleEndValue); }
+            set { doubleEndValue = value; }
         }
         [Required]
         [Range(1, double.MaxValue - 1, ErrorMessage = "Positive Numbers Only!")]
