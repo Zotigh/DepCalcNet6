@@ -33,7 +33,14 @@ namespace DepCalcNet6.Models
         }
         [Required]
         [Range(1, double.MaxValue - 1, ErrorMessage = "Positive Numbers Only!")]
-        public double EndValue
+        public double StraightEndValue
+        {
+            get { return Math.Round(endValue); }
+            set { endValue = value; }
+        }
+        [Required]
+        [Range(1, double.MaxValue - 1, ErrorMessage = "Positive Numbers Only!")]
+        public double DoubleEndValue
         {
             get { return Math.Round(endValue); }
             set { endValue = value; }
