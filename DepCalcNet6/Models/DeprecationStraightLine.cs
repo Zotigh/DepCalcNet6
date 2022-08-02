@@ -12,6 +12,7 @@ namespace DepCalcNet6.Models
         private DateTime dateAddedToInventory;
         private DateTime dateRemovedFromInventory;
         private double straightEndValue = 0;
+        private double doubleEndValue = 0;
         private double lifeTime = 0;
         private double startValue = 0;
         private double salvageValue = 0;
