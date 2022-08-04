@@ -73,6 +73,10 @@
     string UIMessage = "";
     int i;
 
+    public EditPage()
+    {
+    }
+
     /// <summary>
     /// Method that is ran at initiliation that will populate the form.
     /// </summary>
@@ -91,10 +95,11 @@
     /// initilizer that populates the form via a initilize method.
     /// </summary>
     /// <returns>Completed Task</returns>
-    protected override async Task OnInitializedAsync()
+    /*protected override async Task OnInitializedAsync()
     {
         initalize();
-    }
+    }*/
+    protected override async Task OnInitializedAsync() => initalize();
 
     /// <summary>
     /// Handles the Button submit event and edits the desired/selected object with the new values.
