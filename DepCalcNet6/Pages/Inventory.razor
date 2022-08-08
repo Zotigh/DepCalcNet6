@@ -32,7 +32,7 @@
                     <td>@CalculatedResult.LifeTime</td>
                     <td>@CalculatedResult.DateAddedToInventory.ToShortDateString()</td>
                     <td>@CalculatedResult.DateRemovedFromInventory.ToShortDateString()</td>
-                    <td>@CalculatedResult.EndValue</td>
+                    <td>@CalculatedResult.DoubleEndValue</td>
                     <td><button type="button" @onclick="e => EditItem(CalculatedResult)">Edit</button></td>
                     <td><button type="button" @onclick="e => RemoveItem(CalculatedResult)">Remove</button></td>
                 </tr>
