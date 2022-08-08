@@ -98,7 +98,7 @@ namespace DepCalcNet6.Models
         private void Calc()
         {
 
-            //This is for a straight line deprication
+            //This is for a straight line deprication1
             straightEndValue = (startValue -
                 salvageValue) * (1 / lifeTime);
 
